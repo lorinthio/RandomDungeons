@@ -1,0 +1,5 @@
+name: RandomDungeons
+main: me.Lorinth.RandomDungeon.Main
+depend: [LorinthsBossApi]
+version: 1.0
+description: A plugin which adds random dungeons to the server
