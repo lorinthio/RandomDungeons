@@ -1,19 +1,39 @@
 package me.Lorinth.RandomDungeon;
 
+import me.Lorinth.RandomDungeon.Objects.Dungeon;
+import me.Lorinth.RandomDungeon.Objects.DungeonStyle;
+import me.Lorinth.RandomDungeon.Objects.MaterialPattern;
+import me.Lorinth.RandomDungeon.Objects.Room;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.WorldCreator;
+import org.bukkit.Material;
 
 import me.Lorinth.RandomDungeons.Utils.Messages;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class DungeonManager {
 
 	private String name = "dungeons";
-	
+	private ArrayList<DungeonStyle> styleList = new ArrayList<DungeonStyle>();
+	private static Random random = new Random();
+
 	public DungeonManager(){
 		loadWorld();
+		loadStyles();
+	}
+
+	private void loadStyles(){
+		DungeonStyle style = new DungeonStyle();
+		style.setMainFloorMaterial(Material.STONE);
+		style.setFloorBorder(Material.STONE_BRICK);
+		style.setMainWallMaterial(Material.STONE);
+		style.setMainCeilingMaterial(Material.STONE);
+		style.setFloorPattern(new ArrayList<MaterialPattern>(){{ add(MaterialPattern.Bordered); }});
 	}
 	
 	public World loadWorld() {
@@ -44,5 +64,21 @@ public class DungeonManager {
 	    world.setAutoSave(false);
 	    return world;
 	}
+
+	private DungeonStyle getRandomStyle(){
+	    return styleList.get(random.nextInt(styleList.size()));
+    }
+
+	public void generateDungeon(){
+		Dungeon dungeon = new Dungeon();
+		dungeon.setStyle(this.getRandomStyle());
+
+		int tries = 0;
+		while(tries < 5){
+		    Room room = new Room();
+        }
+	}
+
+	private
 	
 }

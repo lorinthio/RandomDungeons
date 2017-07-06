@@ -11,11 +11,22 @@ public class Dungeon {
 	public String ownerUUID;
 	public Vector3 Start;
 	public Vector3 Exit;
-	
+
 	public Dungeon(){
-		
+
+    }
+
+	public boolean addRoom(Room room){
+		for(Room r : rooms){
+			if(r.contains(room)){
+				return false;
+			}
+		}
+
+		rooms.add(room);
+		return true;
 	}
-	
+
 	public DungeonStyle getStyle(){
 		return style;
 	}
